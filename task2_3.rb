@@ -10,5 +10,5 @@ def rps_game_winner(game)
   raise NoSuchStrategyError unless valid_strategies.include? game[0][1].upcase
   raise NoSuchStrategyError unless valid_strategies.include? game[1][1].upcase
   return game[0] if game[0][1] == game[1][1]
-  (WIN_COMBINATIONS.include?((game[0][1].upcase + '_' + game[1][1].upcase).to_sym)) ? game[0] : game[1]
+  (WIN_COMBINATIONS.include?(([game[0][1].upcase, game[1][1].upcase].join('_')).to_sym)) ? game[0] : game[1]
 end
