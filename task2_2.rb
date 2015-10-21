@@ -1,6 +1,5 @@
 def count_words(str)
-  r = Hash.new(0)
-  words = str.downcase.scan(/\w+/)
-  words.each { |word|  r[word] += 1 }
-  r
+  result = Hash.new(0)
+  str.downcase.scan(/\w+/).each { |word|  result[word] += 1 }
+  result
 end

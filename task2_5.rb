@@ -1,28 +1,15 @@
 class Dessert
 
+  attr_accessor :name
+  attr_accessor :calories
+
   def initialize(name, calories)
-    @name = name
-    @calories = calories
-  end
-
-  def getName
-    @name
-  end
-
-  def setName(name)
-    @name = name
-  end
-
-  def getCalories
-    @calories
-  end
-
-  def setCalories(calories)
-    @calories = calories
+    self.name = name
+    self.calories = calories
   end
 
   def healthy?
-    (@calories.to_i < 200)
+    (self.calories.to_i < 200)
   end
 
   def delicious?
