@@ -22,7 +22,7 @@ class Dessert
   end
 
   def healthy?
-    (@calories < 200)
+    (@calories.to_i < 200)
   end
 
   def delicious?
