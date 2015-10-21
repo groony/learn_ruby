@@ -41,6 +41,6 @@ class JellyBean < Dessert
   end
 
   def delicious?
-    @flavor == 'black licorice' ? false : true
+    @flavor.to_s == 'black licorice' ? false : true
   end
 end
