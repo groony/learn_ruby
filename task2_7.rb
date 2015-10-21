@@ -14,10 +14,9 @@ class Money
   attr_accessor :currency
   attr_accessor :number
 
-  RATES = {
-    'ruble' => {'ruble' => 1, 'dollar' => 0.030, 'euro' => 0.023},
-    'dollar' => {'ruble' => 32.26, 'dollar' => 1, 'euro' => 0.73},
-    'euro' => {'ruble' => 43.61, 'dollar' => 1.35, 'euro' => 1}
+  RATES {
+    dollar_ruble: 32.26,
+    euro_ruble: 43.61
   }
 
   def initialize(currency, number)
