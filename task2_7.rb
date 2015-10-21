@@ -31,7 +31,7 @@ class Money
 
   def in(arg)
     singular_currency = arg.to_s.singularize
-    raise WrongCurrencyError unless (VALID_CURRENCY.include?(currency.to_sym) || VALID_CURRENCY.include?(singular_currency.to_sym))
+    raise WrongCurrencyError unless (VALID_CURRENCY.include?(singular_currency.to_sym))
     return 1 if singular_currency == self.currency
     return self.number * RATES[[currency, singular_currency].join('_').to_sym] if RATES.include?([currency, singular_currency].join('_').to_sym)
     return 1 / RATES[[singular_currency, currency].join('_').to_sym] * self.number
