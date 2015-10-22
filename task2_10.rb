@@ -1,17 +1,17 @@
+# CartesianProduct
 class CartesianProduct
-
   include Enumerable
 
   def initialize(*arrays)
     @arrays = arrays.reverse
-    @num_elements = @arrays.inject(1){ |accum, item| accum *= item.length }
+    @num_elements = @arrays.inject(1) { |a, e| a * e.length }
   end
 
   def count
     @num_elements
   end
 
-  def each(start_index=0, stop_index=-1)
+  def each(start_index = 0, stop_index = -1)
     start_index = @num_elements + start_index if start_index < 0
     stop_index = @num_elements + stop_index + 1 if stop_index < 0
     (start_index...stop_index).each { |index| yield(index_to_item(index)) }
@@ -26,5 +26,4 @@ class CartesianProduct
       element
     end.reverse
   end
-
 end

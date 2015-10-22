@@ -1,10 +1,12 @@
+# String
 class String
   def palindrome?
-    letters = self.downcase.scan(/\w/)
+    letters = downcase.scan(/\w/)
     letters == letters.reverse
   end
 end
 
+# Enumerable
 module Enumerable
   def palindrome?
     a = to_a

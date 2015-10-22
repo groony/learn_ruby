@@ -1,5 +1,5 @@
+# Dessert
 class Dessert
-
   attr_accessor :name
   attr_accessor :calories
 
@@ -9,7 +9,7 @@ class Dessert
   end
 
   def healthy?
-    (self.calories.to_i < 200)
+    (calories.to_i < 200)
   end
 
   def delicious?
