@@ -1,12 +1,10 @@
 require 'active_support/core_ext/string'
 
-class WrongCurrencyError < StandardError; end
-
 # Numeric
 class Numeric
   %w(dollar euro ruble).each do |name|
     define_method "#{name}" do
-      Money.new(name.to_s.singularize, self)
+      Money.new(name, self)
     end
     alias_method "#{name}s", "#{name}"
   end
@@ -26,16 +24,18 @@ class Money
   CURRENCY = [:dollar, :euro, :ruble]
 
   def initialize(currency, number)
-    self.currency = currency
+    self.currency = currency.to_s.singularize.to_sym
     self.number = number
   end
 
+  def rate(cur1, cur2)
+    return 1 if cur1 == cur2
+    return 0 if !CURRENCY.include?(cur1) || !CURRENCY.include?(cur2)
+    rate = RATES[[cur1, cur2].sort.join('_').to_sym]
+    cur1 < cur2 ? rate : 1 / rate
+  end
+
   def in(arg)
-    singular_currency = arg.to_s.singularize
-    fail WrongCurrencyError unless CURRENCY.include?(singular_currency.to_sym)
-    rate = [currency, singular_currency].join('_').to_sym
-    return 1 if singular_currency == currency
-    return number * RATES[rate] if RATES.include?(rate)
-    1 / RATES[[singular_currency, currency].join('_').to_sym] * number
+    number * rate(currency, arg.to_s.singularize.to_sym)
   end
 end
